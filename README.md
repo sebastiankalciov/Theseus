@@ -1,20 +1,17 @@
 # Theseus
 
-**Theseus** is a mobile application developed in **React Native** to compute the shortest path in a polygon and visual represent it using **Augmented Reality**
+**Theseus** is a mobile & web application developed to compute the shortest path in a polygon and visual represent it on the web.
 
 ## Flow
 
 - Draw on a paper a simple polygon
 - Place the phone above a paper
-- Process image then compute the graph
-- Import the graph into the AR scene handler
-- Draw the graph
+- Take picture and send image to firebase
+- Process image from firebase (opencv) then compute the graph
 - Implement an algorithm to compute the shortest path
+- Represent visually the shortest path on the web
 
 Note: This is a simple representation of the app's flow
-
-
-
 
 ### Reference
 
