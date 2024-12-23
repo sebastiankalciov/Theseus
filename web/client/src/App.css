@@ -2,17 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background: hsla(44, 100%, 97%, 1);
   background: linear-gradient(90deg, hsla(44, 100%, 97%, 1) 0%, hsla(176, 100%, 95%, 1) 50%, hsla(211, 100%, 94%, 1) 100%);
@@ -33,25 +22,26 @@
 
 button {
   font: inherit;
-  background-color: #FFFBF0;
+  background-color: #E0F7F7; /* Light blue-green */
   border: 0;
-  color: #29433d;
+  color: #030303; /* Darker teal */
   border-radius: 0.5em;
   font-size: 1.35rem;
   padding: 0.375em 1em;
   font-weight: 600;
-  text-shadow: 0 0.0625em 0 #fff;
-  box-shadow: inset 0 0.0625em 0 0 #f4f4f4, 0 0.0625em 0 0 #efefef,
-  0 0.125em 0 0 #ececec, 0 0.25em 0 0 #e0e0e0, 0 0.3125em 0 0 #dedede,
-  0 0.375em 0 0 #dcdcdc, 0 0.425em 0 0 #cacaca, 0 0.425em 0.5em 0 #cecece;
+  text-shadow: 0 0.0625em 0 #f0ffff; /* Soft white */
+  box-shadow: inset 0 0.0625em 0 0 #d8f0f0, 0 0.0625em 0 0 #ccebea,
+  0 0.125em 0 0 #c2e5e4, 0 0.25em 0 0 #b8dfde,
+  0 0.3125em 0 0 #aed9d8, 0 0.375em 0 0 #a4d3d2,
+  0 0.425em 0 0 #9acad1, 0 0.425em 0.5em 0 #92c5c5;
   transition: 0.15s ease;
   cursor: pointer;
 }
 
 button:active {
   translate: 0 0.225em;
-  box-shadow: inset 0 0.03em 0 0 #f4f4f4, 0 0.03em 0 0 #efefef,
-  0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
-  0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
+  box-shadow: inset 0 0.03em 0 0 #d8f0f0, 0 0.03em 0 0 #ccebea,
+  0 0.0625em 0 0 #c2e5e4, 0 0.125em 0 0 #b8dfde,
+  0 0.125em 0 0 #aed9d8, 0 0.2em 0 0 #a4d3d2,
+  0 0.225em 0 0 #9acad1, 0 0.225em 0.375em 0 #92c5c5;
 }
-
