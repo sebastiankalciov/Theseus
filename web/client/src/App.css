@@ -14,7 +14,10 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: hsla(44, 100%, 97%, 1);
+  background: linear-gradient(90deg, hsla(44, 100%, 97%, 1) 0%, hsla(176, 100%, 95%, 1) 50%, hsla(211, 100%, 94%, 1) 100%);
+  background: -moz-linear-gradient(90deg, hsla(44, 100%, 97%, 1) 0%, hsla(176, 100%, 95%, 1) 50%, hsla(211, 100%, 94%, 1) 100%);
+  background: -webkit-linear-gradient(90deg, hsla(44, 100%, 97%, 1) 0%, hsla(176, 100%, 95%, 1) 50%, hsla(211, 100%, 94%, 1) 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,11 +31,27 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  font: inherit;
+  background-color: #FFFBF0;
+  border: 0;
+  color: #29433d;
+  border-radius: 0.5em;
+  font-size: 1.35rem;
+  padding: 0.375em 1em;
+  font-weight: 600;
+  text-shadow: 0 0.0625em 0 #fff;
+  box-shadow: inset 0 0.0625em 0 0 #f4f4f4, 0 0.0625em 0 0 #efefef,
+  0 0.125em 0 0 #ececec, 0 0.25em 0 0 #e0e0e0, 0 0.3125em 0 0 #dedede,
+  0 0.375em 0 0 #dcdcdc, 0 0.425em 0 0 #cacaca, 0 0.425em 0.5em 0 #cecece;
+  transition: 0.15s ease;
+  cursor: pointer;
 }
+
+button:active {
+  translate: 0 0.225em;
+  box-shadow: inset 0 0.03em 0 0 #f4f4f4, 0 0.03em 0 0 #efefef,
+  0 0.0625em 0 0 #ececec, 0 0.125em 0 0 #e0e0e0, 0 0.125em 0 0 #dedede,
+  0 0.2em 0 0 #dcdcdc, 0 0.225em 0 0 #cacaca, 0 0.225em 0.375em 0 #cecece;
+}
+
