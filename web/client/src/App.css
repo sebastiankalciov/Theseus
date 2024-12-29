@@ -22,20 +22,21 @@
 
 button {
   font: inherit;
-  background-color: #E0F7F7; /* Light blue-green */
+  background-color: #E0F7F7;
   border: 0;
-  color: #030303; /* Darker teal */
+  color: #030303;
   border-radius: 0.5em;
   font-size: 1.35rem;
   padding: 0.375em 1em;
   font-weight: 600;
-  text-shadow: 0 0.0625em 0 #f0ffff; /* Soft white */
+  text-shadow: 0 0.0625em 0 #f0ffff;
   box-shadow: inset 0 0.0625em 0 0 #d8f0f0, 0 0.0625em 0 0 #ccebea,
   0 0.125em 0 0 #c2e5e4, 0 0.25em 0 0 #b8dfde,
   0 0.3125em 0 0 #aed9d8, 0 0.375em 0 0 #a4d3d2,
   0 0.425em 0 0 #9acad1, 0 0.425em 0.5em 0 #92c5c5;
   transition: 0.15s ease;
   cursor: pointer;
+  margin-top: 4rem;
 }
 
 button:active {
@@ -44,4 +45,47 @@ button:active {
   0 0.0625em 0 0 #c2e5e4, 0 0.125em 0 0 #b8dfde,
   0 0.125em 0 0 #aed9d8, 0 0.2em 0 0 #a4d3d2,
   0 0.225em 0 0 #9acad1, 0 0.225em 0.375em 0 #92c5c5;
+}
+
+#image-container-title {
+  color: #253434;
+  font-weight: bold;
+  font-size: calc(10px + 5vmin);
+
+}
+
+.card {
+  --bg: #f1f1f1;
+  --contrast: #f9f9f9;
+  --grey: #d9d9d9;
+  position: relative;
+  padding: 12px;
+  background-color: var(--bg);
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px -10px;
+
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(45deg, var(--bg), var(--grey) 20px);
+  filter: opacity(15%);
+}
+
+.card-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 180px;
+  height: 240px;
+  background-color: var(--contrast);
+  border-radius: 25px;
+
+  font-size: 26px;
+  font-weight: 700;
+  color: #555;
+  text-align: center;
 }

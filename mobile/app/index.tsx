@@ -2,7 +2,6 @@ import {Alert, Button, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, Vie
 import {useRef, useState} from "react";
 import {CameraType, CameraView, useCameraPermissions} from "expo-camera";
 import {FontAwesome5} from "@expo/vector-icons";
-
 import {uploadImage} from "@/utils/uploadImage";
 
 export default function Index() {
