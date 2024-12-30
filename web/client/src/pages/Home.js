@@ -3,7 +3,8 @@ import {useEffect, useState} from "react";
 import {getDownloadURL, ref} from "firebase/storage";
 import {storage} from "../firebase/config";
 import {useNavigate} from "react-router-dom";
-import {processImage} from "../components/imageProcessing";
+import {animatePath} from "../components/pathAnimation";
+import {handleImageProcess} from "../components/imageProcessing";
 
 function Home() {
     const [imageURL, setImageURL] = useState(null);
@@ -25,9 +26,9 @@ function Home() {
 
     const navigate = useNavigate();
 
-    const handleImageProcessing = async () => {
+    const handleImageProcessing = () => {
         // do some mathematical hard shit
-        await processImage(imageURL);
+        handleImageProcess(imageURL);
         navigate('./AnimationPage');
     };
 
