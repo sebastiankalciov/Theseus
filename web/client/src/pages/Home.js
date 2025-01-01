@@ -41,7 +41,7 @@ function Home() {
                     <div className="card-overlay"></div>
                     <div className="card-inner">
                         {imageURL ? (
-                            <img src={imageURL} alt="fetched from firebase" style={{width: "250px", height: "400px"}}/>
+                            <img src={imageURL} alt="fetched from firebase" style={{width: "450px", height: "400px"}}/>
                         ) : (
                             <p>Loading image...</p>
                         )}
