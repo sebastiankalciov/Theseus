@@ -79,8 +79,8 @@ button:active {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: 450px;
-  height: 300px;
+  width: 650px;
+  height: 400px;
   background-color: var(--contrast);
   border-radius: 25px;
 

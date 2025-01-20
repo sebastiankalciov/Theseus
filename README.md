@@ -15,7 +15,7 @@
 
 <img src = "./assets/processed_overlay1.png" width = 700/>
 
-## Matplotlib polygon with triangulation and shortest path representation
+## Matplotlib polygon with triangulation andshortest path representation
 
 <img src = "./assets/matplotlib.png" width = 700/>
 
@@ -23,6 +23,10 @@
 ## Mobile view
 
 <img src = "./assets/mobile_view.png" width = 350 height = 800/>
+
+## Web view
+
+<img src = "./assets/web_view.png" width = 700/>
 
 ## Flow
 
