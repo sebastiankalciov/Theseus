@@ -15,7 +15,7 @@
 
 <img src = "./assets/processed_overlay1.png" width = 700/>
 
-## Matplotlib polygon with triangulation andshortest path representation
+## Matplotlib polygon with triangulation and shortest path representation
 
 <img src = "./assets/matplotlib.png" width = 700/>
 
@@ -32,10 +32,10 @@
 
 - Draw on a paper a simple polygon
 - Place the phone above a paper
-- Take picture and send image to firebase
-- Process image from firebase (opencv) then compute the graph
-- Use Dijsktra to compute the shortest path
-- Represent visually the shortest path on the web using D3.js
+- Take picture
+- Process image then compute the graph
+- Compute the shortest path
+- Represent visually the shortest path on the web
 
 Note: This is a simple representation of the app's flow
 
@@ -47,7 +47,7 @@ Note: This is a simple representation of the app's flow
 - Web server: **Express**
 
 
-- Image processing: Python, **OpenCV**
+- Image processing: Python (**OpenCV**)
 - Graph computation: Python (**scipy, shapely, matplotlib**)
 - Triangulation: **Delaunay's** algorithm for triangulation
 - Path computation: **Dijkstra's** shortest path algorithm
