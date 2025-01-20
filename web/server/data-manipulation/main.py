@@ -2,9 +2,8 @@ import numpy as np
 import urllib.request
 import cv2
 import sys
-from scipy.spatial import Delaunay, ConvexHull
+from scipy.spatial import Delaunay
 from shapely.geometry import LineString, Polygon
-import networkx as nx
 import matplotlib.pyplot as plt
 import heapq
 import json
@@ -21,10 +20,11 @@ def url_to_image(url):
 
     return image
 
+# compute the euclidean distance between 2 points on the image
 def euclidean_distance(p1, p2):
     return np.linalg.norm(np.array(p1) - np.array(p2))
 
-
+# calculate the center of the start/end point
 def calculate_centroid(contour):
     M = cv2.moments(contour)
 
@@ -36,7 +36,7 @@ def calculate_centroid(contour):
 
     return (cx, cy)
 
-# implement funnel algorithm
+# implementation of dijkstra algorithm for shortest path
 def compute_path(graph, start, end):
     queue = [(0, start)]
     distances = {i: float('inf') for i in graph}
@@ -74,7 +74,7 @@ def build_graph_from_triangulation(points, triangles, polygon_points, with_point
     centroids = []
     centroid_indices = {}
 
-    # calculate centroids for triangles and add them as new points
+    # calculate centroids (start & end points) for triangles and add them as new points
     for t, triangle in enumerate(triangles):
         triangle_points = [points[triangle[0]], points[triangle[1]], points[triangle[2]]]
         centroid = np.mean(triangle_points, axis=0)
@@ -82,7 +82,7 @@ def build_graph_from_triangulation(points, triangles, polygon_points, with_point
         centroid_indices[t] = len(points) + len(centroids) - 1
         graph[centroid_indices[t]] = []
 
-    # add edges between centroids and triangle vertices if valid
+    # add edges between centroids (start & end points) and triangle vertices if valid
     for t, triangle in enumerate(triangles):
         i, j, k = triangle
         triangle_edges = [
@@ -102,6 +102,8 @@ def build_graph_from_triangulation(points, triangles, polygon_points, with_point
         for vertex in triangle:
             edge_line = LineString([points[vertex], centroids[t]])
 
+            # check if the line is inside of the polygon and not outside
+            # this messed up a lot of things when it was not checked (couldn't compute the shortest path)
             if polygon.contains(edge_line): 
                 graph[centroid_indices[t]].append((vertex, euclidean_distance(points[vertex], centroids[t])))
                 graph[vertex].append((centroid_indices[t], euclidean_distance(points[vertex], centroids[t])))
@@ -199,6 +201,7 @@ def save_data(points,path, polygon_outline, output_file="data-output/newprocesse
         "outline": outline_points
     }
 
+    # data saved in a file is used just for debugging, it has no other role
     with open(output_file, "w") as f:
         json.dump(data, f, indent=4)
 
@@ -222,18 +225,27 @@ def process_image(imageURL):
     # start point, endpoint and noise
     
     areasWithContours = []
+    
+    # get the polygons with their respective area 
     for contour in contours:
         areasWithContours.append([cv2.contourArea(contour), contour])
 
+    # sort the polygons based on their area size
+
     sortedAreas = sorted(areasWithContours, reverse=True, key=lambda x: x[0])[1:5]
 
+    # check if the first 2 polygons are not the same
+    # because it is possible to extract 2 variants of the polygon
+    # (this function is useless rn, but will remain here for future improvements)
+    
     if sortedAreas[0][0] > 1000000 and sortedAreas[1][0] > 1000000:
         sortedAreas = sortedAreas[1:5]
 
     for area, contour in sortedAreas: 
 
         # take only the large polygons (the main polygon and the starting/ending point) and reduce noise
-        
+        # second measure in case something breaks when doing the first sorting
+
         if area > 4000:  
 
             # approxPolyDP - approximates the polygon to a specific precision
@@ -287,11 +299,11 @@ def process_image(imageURL):
     cv2.polylines(canvas, [polygon_points_circle2], isClosed=True, color=(255, 255, 255), thickness=2)
     cv2.imwrite('data-output/processed_overlay1.png', canvas)
     
+    # to return the response it must be printed
     print(json.dumps(data))
     return 1
 
 if __name__== "__main__":
+
     # argv[1] - imageURL
     process_image(sys.argv[1]);
-
-
