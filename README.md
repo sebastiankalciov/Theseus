@@ -15,7 +15,7 @@
 
 <img src = "./assets/processed_overlay1.png" width = 700/>
 
-## Matplotlib polygon with shortest path representation
+## Matplotlib polygon with triangulation and shortest path representation
 
 <img src = "./assets/matplotlib.png" width = 700/>
 
@@ -37,13 +37,17 @@ Note: This is a simple representation of the app's flow
 
 ## Technical details
 
-- Mobile: React Native
-- Database: Firebase
-- Web client: React
-- Web server: Express
+- Mobile: **React Native**
+- Database: **Firebase**
+- Web client: **React**
+- Web server: **Express**
 
-- Image processing: Python, OpenCV
-- Graph computation: Python (scipy, shapely, matplotlib)
+
+- Image processing: Python, **OpenCV**
+- Graph computation: Python (**scipy, shapely, matplotlib**)
+- Triangulation: **Delaunay's** algorithm for triangulation
+- Path computation: **Dijkstra's** shortest path algorithm
+- Graph representation: **D3.js**
 
 ### Reference
 
