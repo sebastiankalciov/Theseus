@@ -3,11 +3,11 @@ import {useEffect, useState} from "react";
 import {getDownloadURL, ref} from "firebase/storage";
 import {storage} from "../firebase/config";
 import {useNavigate} from "react-router-dom";
-import {animatePath} from "../components/pathAnimation";
 import {handleImageProcess} from "../components/imageProcessing";
 
 function Home() {
     const [imageURL, setImageURL] = useState(null);
+    const [processedData, setProcessedData] = useState(null);
 
     const fetchImage = async () => {
         try {
@@ -22,14 +22,14 @@ function Home() {
     useEffect(() => {
         // get image from the firebase
         fetchImage();
-    })
+    }, []);
 
     const navigate = useNavigate();
 
-    const handleImageProcessing = () => {
-        // do some mathematical hard shit
-        handleImageProcess(imageURL);
-        navigate('./AnimationPage');
+    const handleImageProcessing = async () => {
+        const data = await handleImageProcess(imageURL);
+        setProcessedData(data)
+        navigate('./AnimationPage', { state: { data: data } });
     };
 
     return (

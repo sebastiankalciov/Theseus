@@ -5,25 +5,28 @@ const { spawn } = require('child_process');
 const app = express();
 const port = 5000;
 app.use(express.json());
-
 app.use(cors())
 
 app.post('/process-image', (req, res) => {
 
     const {imageURL} = req.body;
+
     const pythonProcess = spawn('python', ['./data-manipulation/main.py ', imageURL]);
 
     let result = '';
+
     pythonProcess.stdout.on('data', data => {
-        result = data.toString();
+        result += data.toString();
     })
+
     pythonProcess.stderr.on('data', data => {
-        result = data.toString();
+        console.error('error when stderr', data);
     })
 
     pythonProcess.on('close', (code) => {
         if (code === 0) {
-            res.json({body:result});
+            res.json({body: result});
+            console.log("rezultat: ", result);
         } else {
             res.status(500).json({error: result});
         }
@@ -32,6 +35,6 @@ app.post('/process-image', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log('Server listening on port:', port);
+    console.log('server listening on port:', port);
 })
 

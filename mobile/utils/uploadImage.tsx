@@ -1,6 +1,5 @@
 import {getDownloadURL, ref, uploadBytes} from "@firebase/storage";
 import {storage} from "@/firebase/config";
-import {Alert} from "react-native";
 
 export const uploadImage = async (picture: string) => {
     try {
