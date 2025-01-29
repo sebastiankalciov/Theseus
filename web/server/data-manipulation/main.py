@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 import heapq
 import json
 
+from timeit import default_timer as timer
+from datetime import timedelta
+
 def url_to_image(url):
     # open a connection with url
     response = urllib.request.urlopen(url)
@@ -211,6 +214,10 @@ def process_image(imageURL):
 
     image = url_to_image(imageURL);
 
+    # start timer to see how much time it takes
+    # to process the image (polygon, start point, end point)
+    # start = timer()
+
     _,threshold = cv2.threshold(image, 100, 255, cv2.THRESH_BINARY) 
 
     # extract the contours
@@ -258,6 +265,11 @@ def process_image(imageURL):
                 polygons.append(approx)
                 cv2.drawContours(image, [approx], 0, (255, 0, 0), 5) 
 
+
+    # stop the timer
+    # end = timer() - 0.099794s to process the image
+    # print(f"Time to process the image: {timedelta(seconds=end-start)}")
+    
     # create a white outline of the polygon on a black background
     canvas = np.zeros_like(image)
 
@@ -281,14 +293,23 @@ def process_image(imageURL):
     points1 = np.vstack([polygon_points_polygon, centroid1, centroid2])
     triangles = Delaunay(points).simplices
 
-    # build a graph from the triangulation
+    # build a graph from the triangulation twice,
+    # to have accurate shortest path
+
+    # start = timer()
+
     graph, points = build_graph_from_triangulation(points, triangles, polygon_points_polygon)
     triangles = Delaunay(points).simplices
 
     graph, points = build_graph_from_triangulation(points, triangles, polygon_points_polygon)
     
     path = compute_path(graph, len(points1) - 2, len(points1) - 1)
-
+    
+    # end = timer() - 0:00:00.027759, 0.27759s to build graph
+    # and to compute the shortest path
+    
+    # print(f"Time to process the image: {timedelta(seconds=end-start)}")
+    
     visualize_triangulation_with_path(points, triangles, path, [centroid1, centroid2], polygon_points_polygon, graph)
 
     data = save_data(points, path, polygon_points_polygon)
